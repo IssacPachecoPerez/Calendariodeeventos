@@ -1,39 +1,6 @@
 <?php
     
-    session_start();
-    $usu=$_SESSION['usuario'];
-   
-
-    if(!isset($_SESSION['rol'])){
-        header('location: ../Index.php');
-    }else{
-        if($_SESSION['rol'] != 4){
-            header('location: ../Index.php');
-        }
-    }
-$now = time();
-
-if($now > $_SESSION['expire']) {
-session_destroy();
-
-echo "Su sesion a terminado,
-<a href='../Index.php'>Necesita Hacer Login</a>";
-exit;
-}
-?>
-
-<?php
-    
         include("db.php");
-        $CON="SELECT * FROM usuarios WHERE '$usu' = USUARIO";
-            
-            $result = $conexion->query($CON);
-            if($result->num_rows>0){
-                
-                while($row = $result->fetch_assoc()){
-                  $usuario=$row['ID_USER'];
-                }
-            }
         $sql="select * from eventos order by id_evento desc limit 1";
         $resultado=$conexion->query($sql);
 

@@ -1,27 +1,4 @@
 <?php
-    
-    session_start();
-    $usu=$_SESSION['usuario'];
-   
-
-    if(!isset($_SESSION['rol'])){
-        header('location: ../Index.php');
-    }else{
-        if($_SESSION['rol'] != 4){
-            header('location: ../Index.php');
-        }
-    }
-$now = time();
-
-if($now > $_SESSION['expire']) {
-session_destroy();
-
-echo "Su sesion a terminado,
-<a href='../Index.php'>Necesita Hacer Login</a>";
-exit;
-}
-?>
-<?php
 include_once("db.php");
 $consulta_eventos = "SELECT id_evento, titulo, color, observaciones, inicio, fin FROM eventos";
 $resultado_eventos = mysqli_query($conexion, $consulta_eventos);
